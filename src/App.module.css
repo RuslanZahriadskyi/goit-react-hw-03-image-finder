@@ -1,0 +1,27 @@
+body {
+  max-width: 1680px;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 16px;
+  padding-bottom: 24px;
+}
+
+.gallery__container {
+  margin-top: 100px;
+}
+
+.loaderContainer {
+  margin: 0 auto;
+}
+
+.errorContainer {
+  margin-top: 100px;
+
+  text-align: center;
+  font-style: italic;
+  font-weight: 800;
+  font-size: 40px;
+}

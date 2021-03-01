@@ -1,0 +1,12 @@
+.card__img {
+  box-sizing: border-box;
+  height: 250px;
+  display: block;
+  max-width: 100%;
+  cursor: zoom-in;
+  transition: 0.5s;
+}
+
+.card__img:hover {
+  transform: scale(1.05);
+}
