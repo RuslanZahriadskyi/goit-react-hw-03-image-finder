@@ -8,8 +8,8 @@ import s from './ImageGallery.module.css';
 class ImageGallery extends Component {
   state = {
     modalOpen: false,
-    bigImgSrc: '',
-    bigImgAlt: '',
+    bigSrc: '',
+    bigAlt: '',
   };
 
   toogleModal = () => {
@@ -20,28 +20,36 @@ class ImageGallery extends Component {
     }));
   };
 
-  onImgClick = e => {
+  onImgClick = (bigSrc, bigAlt) => {
     this.toogleModal();
 
-    this.setState({
-      bigImgSrc: e.target.dataset.modal_img,
-      bigImgAlt: e.target.alt,
-    });
+    this.setState({ bigSrc, bigAlt });
   };
 
   render() {
     const { images } = this.props;
-    const { modalOpen, bigImgSrc, bigImgAlt } = this.state;
+    const { modalOpen, bigSrc, bigAlt } = this.state;
 
     return (
       <>
         <ul className={s.gallery}>
-          <ImageGalleryItem images={images} onImgClick={this.onImgClick} />
+          {images.map(({ id, webformatURL, tags, largeImageURL }) => {
+            return (
+              <ImageGalleryItem
+                key={id}
+                imgSrc={webformatURL}
+                imgTags={tags}
+                onImgClick={() => {
+                  this.onImgClick(largeImageURL, tags);
+                }}
+              />
+            );
+          })}
         </ul>
 
         {modalOpen && (
           <Modal closeModal={this.toogleModal}>
-            {<img src={bigImgSrc} alt={bigImgAlt} />}
+            {<img src={bigSrc} alt={bigAlt} />}
           </Modal>
         )}
       </>
