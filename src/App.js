@@ -52,9 +52,10 @@ class App extends Component {
           status: Status.RESOLVED,
         });
         if (page !== 1) {
-          console.dir(document.documentElement);
           window.scrollTo({
-            top: document.documentElement.scrollHeight - 1300,
+            top:
+              document.documentElement.scrollTop +
+              document.documentElement.clientHeight,
             behavior: 'smooth',
           });
         }

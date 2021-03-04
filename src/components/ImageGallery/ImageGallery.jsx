@@ -39,9 +39,8 @@ class ImageGallery extends Component {
                 key={id}
                 imgSrc={webformatURL}
                 imgTags={tags}
-                onImgClick={() => {
-                  this.onImgClick(largeImageURL, tags);
-                }}
+                bigImg={largeImageURL}
+                onImgClick={this.onImgClick}
               />
             );
           })}
@@ -60,5 +59,12 @@ class ImageGallery extends Component {
 export default ImageGallery;
 
 ImageGallery.propTypes = {
-  images: PropTypes.array.isRequired,
+  images: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      webformatURL: PropTypes.string.isRequired,
+      tags: PropTypes.string,
+      largeImageURL: PropTypes.string.isRequired,
+    }),
+  ),
 };
